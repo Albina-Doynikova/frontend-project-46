@@ -1,0 +1,26 @@
+{
+  "name": "@hexlet/code",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "second project ",
+  "main": "gendiff.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Albina-Doynikova/frontend-project-46.git"
+  },
+  "author": "Albina Doynikova",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Albina-Doynikova/frontend-project-46/issues"
+  },
+  "homepage": "https://github.com/Albina-Doynikova/frontend-project-46#readme",
+  "dependencies": {
+    "commander": "^13.1.0"
+  },
+  "bin": {
+  "gendiff": "./gendiff.js"
+}
+}
