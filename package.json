@@ -2,8 +2,8 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "type": "module",
-  "description": "second project ",
-  "main": "gendiff.js",
+  "description": "Difference calculator",
+  "main": "bin/gendiff.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,6 +21,6 @@
     "commander": "^13.1.0"
   },
   "bin": {
-  "gendiff": "./gendiff.js"
+  "gendiff": "./bin/gendiff.js"
 }
 }
