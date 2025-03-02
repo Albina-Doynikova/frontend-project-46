@@ -14,18 +14,22 @@ const gendiff = program
     .option('-f, --format', 'type format')
     .argument('<filepath1>')
     .argument('<filepath2>')
-    .action((a, b, options) => {
-        console.log('a', a);
-        console.log('b', b);
-        console.log('options', options);
+    .action((filepath1, filepath2, options) => {
+        const diff = genDiff(filepath1, filepath2);
+        if (options.format === 'json') {
+            console.log(JSON.stringify(diff, null, 2));
+        } else {
+            diff.forEach(change => {
+                console.log(`${change.key}: ${change.status}`);
+            });
+        }
     });
 
 gendiff
     .command('split')
     .argument('<string>', 'String to split')
-    .action((str) => {
-        console.log(str.split(':'));
-    })
+    .option('-s, --separator <sep>', 'Separator', ':') 
+    .action((str, options) => {
+        console.log(str.split(options.separator));
+    });
 program.parse();
-
-    
