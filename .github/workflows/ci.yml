@@ -1,0 +1,48 @@
+# file: .github/workflows/show-directory.yml
+name: show-directory
+
+# on – определяет события, которые запускают воркфлоу
+on: push
+
+jobs:
+  # build – произвольно выбранное имя задания
+  # их может быть больше одного
+  build:
+    # операционная система для работы воркфлоу
+    runs-on: macos-latest
+
+    steps:  # список шагов, которые надо выполнить
+      # экшен — выполняет какую-то задачу
+      # checkout — клонирует репозиторий
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Шаг 2: Устанавливаем make
+      - name: Install make
+        run: |
+          brew --version  # Проверяем версию Homebrew
+          brew install make  # Устанавливаем make
+          make --version  # Проверяем, что make установлен
+
+      # Шаг 3: Выполнение команды make say-hello
+      - run: make say-hello
+
+      # Шаг 4: Сетап проекта
+      - name: Set up project
+        run: make setup
+
+      # Шаг 5: Запуск тестов
+      - name: Run tests
+        run: make test
+
+      # Шаг 6: Запуск линтера
+      - name: Run linter
+        run: make lint
+      # Шаг 7: Отправка покрытия кода в CodeClimate
+      - name: Submit coverage to CodeClimate
+        run: |
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > /tmp/test-reporter
+          chmod +x /tmp/test-reporter
+          /tmp/test-reporter after-build --coverage-input-type lcov --coverage-input-path coverage/lcov-report.json
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}  # Секрет с ID для CodeClimate
