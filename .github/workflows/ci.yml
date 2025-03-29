@@ -42,4 +42,4 @@ jobs:
           chmod +x /tmp/qlty-test-reporter
           /tmp/qlty-test-reporter after-build --coverage-input-type lcov --coverage-input-path coverage/lcov-report.json
         env:
-          QCLTY_TEST_REPORTER_ID: ${{ secrets.QCLTY_TEST_REPORTER_ID }}
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
