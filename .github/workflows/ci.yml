@@ -37,10 +37,9 @@ jobs:
 
       # Отправка отчета покрытия в CodeClimate через Quality.sh
       - name: Upload coverage to CodeClimate
-      run: |
-        curl -sSL https://github.com/qlty-sh/codeclimate-action/releases/latest/download/qlty-test-reporter-linux-amd64 -o /tmp/qlty-test-reporter
-        chmod +x /tmp/qlty-test-reporter
-        /tmp/qlty-test-reporter after-build --coverage-input-type lcov --coverage-input-path coverage/lcov.info
-      env:
-        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-    
+        run: |
+          curl -sSL https://github.com/qlty-sh/codeclimate-action/releases/latest/download/qlty-test-reporter-linux-amd64 -o /tmp/qlty-test-reporter
+          chmod +x /tmp/qlty-test-reporter
+          /tmp/qlty-test-reporter after-build --coverage-input-type lcov --coverage-input-path coverage/lcov.info
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
