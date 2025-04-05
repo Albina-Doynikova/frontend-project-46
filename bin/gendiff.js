@@ -16,13 +16,7 @@ const gendiff = program
     .argument('<filepath2>')
     .action((filepath1, filepath2, options) => {
         const diff = genDiff(filepath1, filepath2);
-        if (options.format === 'json') {
-            console.log(JSON.stringify(diff, null, 2));
-        } else {
-            diff.forEach(change => {
-                console.log(`${change.key}: ${change.status}`);
-            });
-        }
+        console.log(diff);
     });
 
 gendiff
