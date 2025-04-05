@@ -1,9 +1,11 @@
+# Name of workflow
 name: Node CI
 
+# Trigger the workflow on push or pull request
 on:
   push:
     branches:
-      - main
+      - main  # Укажите нужную ветку
   pull_request:
 
 env:
@@ -11,35 +13,43 @@ env:
 
 jobs:
   build:
+
+    # The type of machine to run the job on
     runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v3
+    strategy:
+      # Node versions list
+      matrix:
+        node-version: [18.x]
 
-      # Настройка Node.js
-      - name: Use Node.js
+    steps:
+      # Check-out repository under GitHub workspace
+      - uses: actions/checkout@v3
+      
+      # Configures the node version used on GitHub-hosted runners
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version: '18.x'
+          node-version: ${{ matrix.node-version }}
           cache: 'npm'
 
-      # Установка зависимостей
+      # Install dependencies
       - name: Install dependencies
-        run: npm ci
+        run: make install
 
-      # Запуск линтера
+      # Run linter
       - name: Run lint
-        run: npx eslint .
+        run: make lint
 
-      # Запуск тестов
+      # Run tests
       - name: Run tests
-        run: npm test -- --coverage --coverageProvider=v8
+        run: make test
 
-      # Отправка отчета покрытия в CodeClimate через Quality.sh
-      - name: Upload coverage to CodeClimate
-        run: |
-          curl -sSL https://github.com/qlty-sh/codeclimate-action/releases/latest/download/qlty-test-reporter-linux-amd64 -o /tmp/qlty-test-reporter
-          chmod +x /tmp/qlty-test-reporter
-          /tmp/qlty-test-reporter after-build --coverage-input-type lcov --coverage-input-path coverage/lcov.info
+      # Publish code coverage on Code Climate
+      - name: Test & publish code coverage
+        uses: paambaati/codeclimate-action@v3.2.0
+        with:
+          coverageCommand: make test-coverage
         env:
+          CI: true
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
