@@ -12,4 +12,8 @@ Gendiff - это утилита для сравнения двух YAML файл
 
 Посмотрите демонстрацию работы утилиты в Asciinema:
 
-[Смотреть запись Asciinema](https://asciinema.org/a/FqKUc6a9CQ7wZI9nLAHc34Kzo)
+[Смотреть запись Asciinema](https://asciinema.org/a/UH68wecOv5lcKBJ5QORALYeIO)
+
+## Рекурсивное сравнение
+
+[Смотреть запись Asciinema](https://asciinema.org/a/WqnJI3NX5wZwoO3ZPiLQNZtzb)

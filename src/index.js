@@ -1,33 +1,23 @@
 import path from 'path';
-import fs from 'fs';
+import readFile from './readFile.js';
+import createTree from './createTree.js';
 import parser from './parser.js';
+import formater from './formatters/stylish.js';
 
 export default (filepath1, filepath2) => {
-    const content1 = fs.readFileSync(path.resolve(filepath1), 'utf-8');
-    const content2 = fs.readFileSync(path.resolve(filepath2), 'utf-8');
+    const content1 = readFile(filepath1);
+    const content2 = readFile(filepath2);
 
-    const parserData1 = parser(content1, 'yml');
-    const parserData2 = parser(content2, 'yml');
+    const format1 = path.extname(filepath1);
+    const format2 = path.extname(filepath2);
 
-    const genDiff = (obj1, obj2) => {
-        const keys = [...new Set([...Object.keys(obj1), ...Object.keys(obj2)])].sort();
+    const parserData1 = parser(content1, format1);
+    const parserData2 = parser(content2, format2);
 
-        return `{\n` + keys.map((key) => {
-            if (!obj2.hasOwnProperty(key)) {
-                return `  - ${key}: ${obj1[key]}`;
-            }
+    const tree = createTree(parserData1, parserData2);
 
-            if (!obj1.hasOwnProperty(key)) {
-                return `  + ${key}: ${obj2[key]}`;
-            }
+    const string = formater(tree);
 
-            if (obj1[key] !== obj2[key]) {
-                return `  - ${key}: ${obj1[key]}\n  + ${key}: ${obj2[key]}`;
-            }
+  return string;
 
-            return `    ${key}: ${obj1[key]}`;
-        }).join('\n') + `\n}`;
-    };
-
-    return genDiff(parserData1, parserData2);
 };
