@@ -17,7 +17,6 @@ const stringify = (value, depth) => {
 const stylish = (tree, depth = 1) => {
   const lines = tree.map((node) => {
     const indent = getIndent(depth);
-    const bracketIndent = getBracketIndent(depth);
     const {
       key, type, value, oldValue, newValue, children,
     } = node;
