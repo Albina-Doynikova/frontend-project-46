@@ -15,7 +15,7 @@ const formatValue = (value) => {
             return `Property '${property}' was added with value: ${formatValue(item.value)}`;
           case 'removed':
             return `Property '${property}' was removed`;
-          case 'updated':
+          case 'changed':
             return `Property '${property}' was updated. From ${formatValue(item.oldValue)} to ${formatValue(item.newValue)}`;
           case 'nested':
             return iter(item.children, property);

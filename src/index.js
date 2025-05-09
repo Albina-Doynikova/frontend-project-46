@@ -2,9 +2,9 @@ import path from 'path';
 import readFile from './readFile.js';
 import createTree from './createTree.js';
 import parser from './parser.js';
-import formater from './formatters/stylish.js';
+import formater from './formatters/index.js';
 
-export default (filepath1, filepath2) => {
+export default (filepath1, filepath2, format = 'stylish') => {
     const content1 = readFile(filepath1);
     const content2 = readFile(filepath2);
 
@@ -16,7 +16,7 @@ export default (filepath1, filepath2) => {
 
     const tree = createTree(parserData1, parserData2);
 
-    const string = formater(tree);
+    const string = formater(tree, format);
 
   return string;
 
