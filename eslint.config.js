@@ -1,27 +1,34 @@
+import js from '@eslint/js';
 import globals from 'globals';
-import pluginJs from '@eslint/js';
+import stylistic from '@stylistic/eslint-plugin';
+import jest from 'eslint-plugin-jest';
+import { defineConfig } from 'eslint/config';
 
-export default [
-  pluginJs.configs.recommended,
+export default defineConfig([
+  js.configs.recommended,
+
+  stylistic.configs.recommended,
+
   {
-    files: [
-      '**/*.{js}',
-    ],
-  },
-  {
+    files: ['**/*.{js,mjs,cjs}'],
     ignores: ['dist/'],
-  },
-  {
     languageOptions: {
-      globals: globals.node,
-      parserOptions: {
-        ecmaVersion: 'latest',
-        sourceType: 'module',
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: {
+        ...globals.node,
+        ...globals.jest,
       },
+    },
+    plugins: {
+      jest,
     },
     rules: {
       'no-underscore-dangle': ['error', { allow: ['__filename', '__dirname'] }],
-      'no-prototype-builtins': 'off', 
+      'no-prototype-builtins': 'off',
+      'jest/no-disabled-tests': 'warn',
+      'jest/no-focused-tests': 'error',
+      'jest/no-identical-title': 'error',
     },
   },
-];
+]);
