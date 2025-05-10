@@ -11,9 +11,7 @@ test('genDiff', () => {
   expect(
     genDiff('__fixtures__/file1.json', '__fixtures__/file2.json'),
   ).toBe(resultStylish);
-});
 
-test('genDiff', () => {
   expect(
     genDiff('__fixtures__/file1.json', '__fixtures__/file2.json', 'stylish'),
   ).toBe(resultStylish);
