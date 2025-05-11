@@ -5,7 +5,7 @@
 [![Maintainability](https://qlty.sh/badges/afab0c07-5f6d-4b3f-9fba-4c3d28b5a70a/maintainability.svg)](https://qlty.sh/gh/Albina-Doynikova/projects/frontend-project-46)
 
 ### SonarQube Badge:
-![![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Albina-Doynikova_frontend-project-46&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Albina-Doynikova_frontend-project-46)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Albina-Doynikova_frontend-project-46&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Albina-Doynikova_frontend-project-46)
 
 
 # Gendiff

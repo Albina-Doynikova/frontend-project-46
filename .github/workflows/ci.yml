@@ -53,3 +53,12 @@ jobs:
         env:
           CI: true
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+       
+      # Run SonarQube analysis
+      - name: Run SonarQube analysis
+        uses: SonarSource/sonarcloud-github-action@v2
+        with:
+          organization: albina-doynikova
+          projectKey: Albina-Doynikova_frontend-project-46
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
