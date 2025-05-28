@@ -29,8 +29,9 @@
     "gendiff": "./bin/gendiff.js"
   },
   "devDependencies": {
-  "@eslint/eslintrc": "^3.3.1",
-  "codeclimate-test-reporter": "^0.5.1",
-  "eslint": "^9.27.0"
-}
+    "@eslint/eslintrc": "^3.3.1",
+    "@stylistic/eslint-plugin": "^4.4.0",
+    "codeclimate-test-reporter": "^0.5.1",
+    "eslint": "^9.27.0"
+  }
 }
