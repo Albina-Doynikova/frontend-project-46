@@ -29,13 +29,8 @@
     "gendiff": "./bin/gendiff.js"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.3.1",
-    "codeclimate-test-reporter": "^0.5.1",
-    "eslint": "^8.57.1",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.31.0",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^7.2.1"
-  }
+  "@eslint/eslintrc": "^3.3.1",
+  "codeclimate-test-reporter": "^0.5.1",
+  "eslint": "^9.27.0"
+}
 }
